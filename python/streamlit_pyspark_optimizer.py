@@ -21,7 +21,7 @@ class PySparkOptimizerLLMApp:
             raise FileNotFoundError(f"The file at {file_path} does not exist.")
 
     def run(self):
-        user_prompt = self.reader(self.user_prompt_path)
+        user_prompt = self.user_prompt_path
         system_prompt = self.reader(self.system_prompt_path)
 
         response = self.client.chat.completions.create(
