@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '.', '.'
 
 class PySparkOptimizerLLMApp:
     def __init__(self, user_prompt, file_type):
-        self.system_prompt_path = './resources/system_prompt_python.txt'  if file_type == "Python" else './resources/system_prompt_sql.txt'
+        self.system_prompt_path = f'./resources/system_prompt_{file_type}.txt'
         self.user_prompt = user_prompt
         
         self.client = OpenAI(

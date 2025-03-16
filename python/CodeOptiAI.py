@@ -10,7 +10,11 @@ GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
 st.markdown("<h1 style='font-size: 2em;'>🔍 GitHub PySpark & SQL Code Optimizer</h1>", unsafe_allow_html=True)
 
-file_type = st.radio("Select the type of file to optimize:", ("Python", "SQL"))
+# file_type = st.radio("Select the type of file to optimize:", ("Python", "SQL"))
+
+file_extension_list = {"Python": ".py", "SQL": ".sql", "Scala": ".scala", "Java": ".java", "R": ".r", "Go": ".go", "Bash": ".sh", "Rust": ".rs"}
+
+file_type = st.selectbox("Select the type of file to optimize:", ("Python", "SQL","Scala","Java","R","Go","Bash","Rust"))
 
 repo_url = st.text_input("Enter GitHub Repository URL (e.g., https://github.com/user/repo)")
 if repo_url and file_type:
@@ -33,7 +37,7 @@ if repo_url and file_type:
                     files[file_content.path] = file_content
             return files
 
-        file_extension = ".py" if file_type == "Python" else ".sql"
+        file_extension = file_extension_list[file_type]
         files = get_files(file_extension)
 
         if not files:
@@ -52,7 +56,7 @@ if repo_url and file_type:
                 st.write(f"📂 **Analyzing:** `{selected_file}`")
 
                 with st.spinner("Processing..."):
-                    suggestions = PySparkOptimizerLLMApp(file_content,file_type).run()
+                    suggestions = PySparkOptimizerLLMApp(file_content,file_type.lower()).run()
 
                 st.markdown(f"{suggestions}")
 
