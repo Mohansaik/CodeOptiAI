@@ -8,7 +8,7 @@ import os
 
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")                                                  
 
-st.markdown("<h1 style='font-size: 2em;'>🔍 GitHub PySpark & SQL Code Optimizer</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='font-size: 2em;'>🔍 GitHub Code Optimizer</h1>", unsafe_allow_html=True)
 
 # file_type = st.radio("Select the type of file to optimize:", ("Python", "SQL"))
 
